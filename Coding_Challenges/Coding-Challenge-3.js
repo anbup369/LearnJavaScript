@@ -18,3 +18,22 @@ Attempt 1: ❌ FAILED (Timeout/Error) Attempt 2: ✅ SUCCESS (Response 200 OK) A
 💡 Explanation:The do...while loop runs at least once and continues until success or max attempts. Random simulation determines each attempt result.
 
 */
+let success;
+let retry = 1;
+do {
+
+    if (Math.random() > 0.6) {
+        success = true;
+        console.log(`Attempt ${retry}: ✅ SUCCESS (Response 200 OK) API call PASSED after ${retry} attempt(s).`)
+        break
+    }
+
+    success = false;
+    console.log(`Attempt ${retry}: ❌ FAILED (Timeout/Error).`);
+    retry++
+
+} while (retry <= 5)
+
+if (!success) {
+    console.log(`API call FAILED after ${retry - 1} attempts. Please try again later.`);
+}
