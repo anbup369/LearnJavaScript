@@ -18,3 +18,32 @@ Status: DISABLED Severity: WARNING Action: Element is visible but disabled. Wait
 
 💡 Explanation:Element is present and displayed but not enabled. Severity is WARNING because it's not fully interactable.
 */
+
+// let isPresent = true, isDisplayed = true, isEnabled = true;
+let isPresent = true, isDisplayed = true, isEnabled = false;
+// let isPresent = true, isDisplayed = false, isEnabled = false;
+// let isPresent = false, isDisplayed = false, isEnabled = false;
+let Status, Action;
+
+if (isPresent === true && isDisplayed === true && isEnabled === true) {
+    Status = "READY"
+    Action = "Element is present, visible and enabled."
+
+} else if (isPresent === true && isDisplayed === true && isEnabled === false) {
+    Status = "DISABLED"
+    Action = "Element is visible but disabled. Wait for enable state or check preconditions."
+
+
+} else if (isPresent === true && isDisplayed === false) {
+    Status = "HIDDEN"
+    Action = "Element is present but not displayed. Investigate visibility conditions."
+
+} else {
+    Status = "NOT FOUND"
+    Action = "Element is not present."
+
+}
+
+let Severity = (Status === "READY") ? "OK" : (Status === "DISABLED" || Status === "HIDDEN") ? "WARNING" : "CRITICAL"
+
+console.log(`Status: ${Status} Severity: ${Severity} Action: ${Action}`)
