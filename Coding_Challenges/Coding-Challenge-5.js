@@ -10,7 +10,7 @@ As an SDET, you frequently need to generate test data for form testing.
 
 Examples:
 
-Input:
+Input: 
 Generate 8 users
 
 Output:
@@ -22,3 +22,24 @@ Output:
 
 💡 Explanation:Each user gets a padded ID, sequential name/email, cycling role, and every 3rd user is INACTIVE for edge case testing.
 */
+var users_count = 8;
+const roles = ["admin", "editor", "viewer", "tester", "manager"];
+const domain = "testingacademy.com";
+
+console.log(`| User ID   | Name         |        Email                     |   Role   | Status     |
+|-----------|------------- |----------------------------------|----------|------------|`)
+for (let i = 1; i <= users_count; i++) {
+
+    let User_ID = "USR-" + String(i).padStart(4, "0");
+
+    let Name = `TestUser_${i}`;
+
+    let Email = `testuser${i}@${domain}`;
+
+    let Role = roles[(i - 1) % roles.length];
+
+    let Status = (i % 3 === 0) ? "INACTIVE" : "ACTIVE"
+
+    console.log(`| ${User_ID}  | ${Name.padEnd(11)}  | ${Email.padEnd(30)}   | ${Role.padEnd(7)}  | ${Status.padEnd(8)}   |`)
+}
+
